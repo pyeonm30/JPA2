@@ -27,10 +27,10 @@ class BasicApplicationTest {
 
         //when
         // 쿼리랑 관련된것은 queryDSL 쓸때는 다 Q타입을 넣어야한다
-        QHello qHello = new QHello("h");
         JPAQueryFactory query = new JPAQueryFactory(em);
+        // QHello qHello = new QHello("h");
         Hello result = query
-                .selectFrom(qHello)
+                .selectFrom(QHello.hello)
                 .fetchOne();
         //then
         assertThat(result).isEqualTo(hello);
