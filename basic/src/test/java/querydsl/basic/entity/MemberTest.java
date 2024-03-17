@@ -32,7 +32,7 @@ class MemberTest {
         em.persist(member3);
         em.persist(member4);
         //초기화
-        em.flush(); // 영속성 컨텍스트에 있는 쿼리를 실제 db로 명령문 작동
+        em.flush(); // 영속성 컨텍스트에 있는 객체를 쿼리로 날려서 실제 db로 명령문 작동
         em.clear(); // 영속성 컨텍스트 초기화
         //확인
         List<Member> members = em.createQuery("select m from Member m",

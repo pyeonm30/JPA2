@@ -33,6 +33,6 @@ public class Member {
     }
     public void changeTeam(Team team) {
         this.team = team;
-        team.getMembers().add(this);
+        team.getMembers().add(this); // 팀에 연관 되어있는 나도 변경해줘야한다
     }
 }
