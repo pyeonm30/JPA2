@@ -109,6 +109,7 @@ public class QueryDSLTest4 {
     }
 
 
+
     @Test
     public void subQueryIn2() throws Exception {
         QMember memberSub = new QMember("memberSub");
@@ -138,5 +139,5 @@ public class QueryDSLTest4 {
                 .fetch();
         result.stream().forEach(s -> System.out.println("s = " + s));
     }
-    
+
 }
