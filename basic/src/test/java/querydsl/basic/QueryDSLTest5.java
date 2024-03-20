@@ -187,7 +187,7 @@ public class QueryDSLTest5 {
                 .fetch();
     }
 
-    // where 절에 직접 넣을 수도 있음 
+    // where 절에 직접 넣을 수도 있음
     private List<Member> searchMember2(String usernameCond, Integer ageCond) {
         return queryFactory
                 .selectFrom(member)
@@ -200,4 +200,37 @@ public class QueryDSLTest5 {
     private BooleanExpression ageEq(Integer ageCond) {
         return ageCond != null ? member.age.eq(ageCond) : null;
     }
+
+
+    @Test
+    public void bulkUpdate(){
+
+        // member.age가 28 미만이면 이름 비회원으로 변경
+       // member1 , member2 변경된다
+
+        // 벌크 연산은 영속성 컨텍스트에 안담고 전부 바로 db에 즉시 넣는다
+        long count = queryFactory
+                .update(member)
+                .set(member.username, "비회원")
+                .where(member.age.lt(28))
+                .execute();
+
+        // 벌트 연산이 끝나면 항상 영속성 컨텍스트 초기화 하자
+        //em.flush();
+        //em.clear();
+
+        List<Member> list = queryFactory.select(member)
+                .from(member)
+                .fetch();
+
+        for(Member m : list){
+            System.out.println("m = " + m);
+        }
+        
+        
+        Assertions.assertThat(count).isEqualTo(2);
+        
+        
+    }
+
 }
