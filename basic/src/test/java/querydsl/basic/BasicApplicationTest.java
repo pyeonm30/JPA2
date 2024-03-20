@@ -11,7 +11,7 @@ import querydsl.basic.entity.Hello;
 import querydsl.basic.entity.QHello;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 @SpringBootTest
 @Transactional
